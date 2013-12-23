@@ -1,0 +1,87 @@
+@import "bootstrap/bootstrap";
+
+@import url(//fonts.googleapis.com/css?family=Lato:700);
+
+.show-grid {
+	margin-bottom: 15px;
+
+	[class^="col-"] {
+		padding-top: 10px;
+		padding-bottom: 10px;
+		background-color: hsl(0, 0%, 93%);
+		border: 1px solid hsl(0, 0%, 87%);
+		background-color: hsla(264, 34%, 36%, 0.15);
+		border: 1px solid hsla(264, 34%, 36%, 0.2);
+		text-align: center;
+	}
+}
+
+body {
+	margin: 0;
+	font-family: 'Lato', sans-serif;
+	color: #999;
+}
+
+.welcome {
+	top: 37vh;
+	text-align: center;
+}
+
+a, a:visited {
+	text-decoration:none;
+}
+
+h1 {
+	font-size: 32px;
+	margin: 16px 0 0 0;
+}
+
+.login-form {
+	background-color: hsl(0, 100%, 100%);
+	font-weight: 500;
+	color: hsl(222, 13%, 59%);
+	border-bottom: 1px solid hsl(220, 19%, 87%);
+
+	[class^="col-"] {
+		min-height: 330px;
+		padding-top: 30px;
+
+		&.border-right:after {
+			content: "";
+			display: block;
+			background: hsl(240, 22%, 90%);
+			width: 1px;
+			height: 65%;
+			position: absolute;
+			right: 0;
+			top: 9%;
+		}
+	}
+
+	.form-actions {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		text-align: left;
+		border-top: 1px solid hsl(0, 100%, 100%);
+		background-color: hsl(223, 41%, 97%);
+		padding: 18px 32px;
+		font-size: 13px;
+		font-weight: bold;
+		font-family: stratum-1-web,sans-serif;
+		text-transform: uppercase;
+		color: hsl(222, 13%, 59%);
+	}
+}
+
+.navbar-user-link {
+	a {
+		float: left;
+	}
+
+	img {
+		float: left;
+		padding: 15px 15px 15px 0;
+	}
+}
