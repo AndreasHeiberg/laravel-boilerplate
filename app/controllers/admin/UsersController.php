@@ -1,5 +1,6 @@
-<?php namespace Controllers;
+<?php namespace Controllers\Admin;
 
+use Controllers\BaseController;
 use Models\User;
 
 class UsersController extends BaseController {
@@ -32,7 +33,7 @@ class UsersController extends BaseController {
 	{
 		$users = $this->user->paginate(20);
 
-		return $this->view->make('users.index', compact('users'));
+		return $this->view->make('admin.users.index', compact('users'));
 	}
 
 	/**
@@ -65,7 +66,7 @@ class UsersController extends BaseController {
 	{
 		$user = $this->user->findOrFail($id);
 
-		return $this->view->make('users.show', compact('user'));
+		return $this->view->make('admin.users.show', compact('user'));
 	}
 
 	/**
@@ -78,7 +79,7 @@ class UsersController extends BaseController {
 	{
 		$user = $this->user->findOrFail($id);
 		
-		return $this->view->make('users.edit', compact('user'));
+		return $this->view->make('admin.users.edit', compact('user'));
 	}
 
 	/**
@@ -100,21 +101,14 @@ class UsersController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		if ($this->auth->user()->id !== $id)
-		{
-			$this->notify->success('You do not have permission to delete this account.')->flash();
-
-			return $this->redirect->back();
-		}
-
 		if ( ! $this->user->delete($id))
 		{
-			$this->notify->success('Your account could not be deleted.')->flash();
+			$this->notify->success('The account could not be deleted.')->flash();
 
 			return $this->redirect->back();
 		}
 
-		$this->notify->success('Your account has been deleted.')->flash();
+		$this->notify->success('The account has been deleted.')->flash();
 
 		return $this->redirect->route('login');
 	}

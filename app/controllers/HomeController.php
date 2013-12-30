@@ -1,35 +1,35 @@
-<?php
+<?php namespace Controllers;
 
 class HomeController extends BaseController {
 
 	public function getIndex()
 	{
-		return View::make('home.index');
+		return $this->view->make('home.index');
 	}
 
 	public function getOverview()
 	{
-		return View::make('home.overview');
+		return $this->view->make('home.overview');
 	}
 
 	public function getGettingStarted()
 	{
-		return View::make('home.getting-started');
+		return $this->view->make('home.getting-started');
 	}
 
 	public function getPricing()
 	{
-		return View::make('home.pricing');
+		return $this->view->make('home.pricing');
 	}
 
 	public function getAbout()
 	{
-		return View::make('home.about');
+		return $this->view->make('home.about');
 	}
 
 	public function getHelp()
 	{
-		return View::make('home.help');
+		return $this->view->make('home.help');
 	}
 
 }

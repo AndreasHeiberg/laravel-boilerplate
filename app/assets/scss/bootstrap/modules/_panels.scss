@@ -5,6 +5,7 @@
 
 // Base class
 .panel {
+  position: relative;
   margin-bottom: $line-height-computed;
   background-color: $panel-bg;
   border: 1px solid transparent;

@@ -43,6 +43,17 @@ Route::filter('auth', function()
 	}
 });
 
+Route::filter('auth.admin', function()
+{
+	// if ( ! Auth::user()->can('view.admin'))
+	if (Auth::user()->id != 2)
+	{
+		Notify::error('You do not have permission to view the admin area.')->flash();
+
+		return Redirect::route('dashboard');
+	}
+});
+
 
 Route::filter('auth.basic', function()
 {

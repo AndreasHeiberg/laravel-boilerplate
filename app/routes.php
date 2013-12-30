@@ -11,14 +11,25 @@
 |
 */
 
-Route::group(['prefix' => 'dashboard', 'before' => 'auth'], function()
+Route::group(['prefix' => 'admin', 'before' => 'auth|auth.admin'], function()
 {
-	Route::get('/', ['as' => 'dashboard', 'uses' => 'DashboardController@getIndex']);
+	Route::resource('users', 'Controllers\Admin\UsersController');
+
+	Route::controller('/', 'Controllers\Admin\AdminController', [
+		'getIndex' => 'admin',
+	]);
 });
 
-Route::resource('users', 'UsersController');
+Route::group(['prefix' => 'dashboard', 'before' => 'auth'], function()
+{
+	Route::controller('/', 'Controllers\Dashboard\DashboardController', [
+		'getIndex' => 'dashboard',
+	]);
+});
 
-Route::controller('/', 'AuthController', [
+Route::resource('users', 'Controllers\UsersController');
+
+Route::controller('/', 'Controllers\AuthController', [
 	'getLogin' => 'login',
 	'getLogout' => 'logout',
 	'getRegister' => 'register',
@@ -27,7 +38,7 @@ Route::controller('/', 'AuthController', [
 	'getResetPassword' => 'reset-password',
 ]);
 
-Route::controller('/', 'HomeController', [
+Route::controller('/', 'Controllers\HomeController', [
 	'getIndex' => 'home',
 	'getOverview' => 'home.overview',
 	'getGettingStarted' => 'home.getting-started',
