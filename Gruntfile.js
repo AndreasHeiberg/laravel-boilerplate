@@ -22,6 +22,14 @@ module.exports = function(grunt) {
 			scss: {
 				source: '<%= options.base.source %>/scss',
 				destination: '<%= options.base.destination %>/css'
+			},
+			images: {
+				source: '<%= options.base.source %>/images',
+				destination: '<%= options.base.destination %>/images'
+			},
+			fonts: {
+				source: '<%= options.base.source %>/fonts',
+				destination: '<%= options.base.destination %>/fonts'
 			}
 		},
 
@@ -30,8 +38,25 @@ module.exports = function(grunt) {
 		// Script
 		// ==================================
 
+		sync: {
+			images: {
+				files: [{
+					cwd: '<%= options.images.source %>',
+					src: '**',
+					dest: '<%= options.images.destination %>',
+				}]
+			},
+			fonts: {
+				files: [{
+					cwd: '<%= options.fonts.source %>',
+					src: '**',
+					dest: '<%= options.fonts.destination %>',
+				}]
+			}
+		},
+
 		// Clean build folder before replacement
-		clean: ['<%= options.base.destination %>'],
+		clean: ['<%= options.js.destination %>', '<%= options.scss.destination %>'],
 
 		// Compile SASS files
 		sass: {
@@ -184,10 +209,11 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-autoprefixer');
 	grunt.loadNpmTasks('grunt-cachebuster');
 	grunt.loadNpmTasks('grunt-import');
+	grunt.loadNpmTasks('grunt-sync');
 	
 
 	// Register tasks
-	grunt.registerTask('default', ['clean', 'sass', 'import:js', 'cachebuster', 'watch']);
-	grunt.registerTask('build', ['clean', 'sass', 'autoprefixer', 'import:js', 'cssmin', 'uglify', 'cachebuster']);
+	grunt.registerTask('default', ['sync', 'clean', 'sass', 'import:js', 'cachebuster', 'watch']);
+	grunt.registerTask('build', ['sync', 'clean', 'sass', 'autoprefixer', 'import:js', 'cssmin', 'uglify', 'cachebuster']);
 
 };
