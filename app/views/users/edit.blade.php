@@ -9,11 +9,11 @@ Laravel PHP Framework
 		<div class="panel panel-default">
 			<div class="panel-heading">{{ $user->name }}</div>
 			<div class="panel-body">
-				<img class="profile-photo" src="{{ $user->profilePhoto->link('medium') }}" alt="{{{ $user->profilePhoto->description }}}">
+				<img class="profile-photo" src="{{ $user->profilePhoto->link(['preset' => 'profile.medium']) }}" alt="{{{ $user->profilePhoto->description }}}">
 				<table class="table">
 					<tbody>
 						<tr>
-							<td><label for="first_name">First name</label></td>
+							<td>First name</td>
 							<td>{{ Form::text('first_name', $user->first_name, ['class' => 'form-control', 'id' => 'fuck']) }}</td>
 						</tr>
 						<tr>

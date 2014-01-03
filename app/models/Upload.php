@@ -94,34 +94,15 @@ class Upload extends BaseModel {
 	 * @param  string $expiration
 	 * @return string
 	 */
-	public function link($size = null, $expiration = '+60 minutes') {
+	public function link($options = array(), $expiration = '+60 minutes') {
 		if ($this->bucket == 'local')
 		{
 			$link = $this->key;
 		}
 
-		if ($size)
+		if ( ! empty($options))
 		{
-			if ($size == 'micro' and $this->tag == 'profile-photo')
-			{
-				$size = ['width' => 30, 'height' => 30];
-			}
-			elseif ($size == 'small' and $this->tag == 'profile-photo')
-			{
-				$size = ['width' => 100, 'height' => 100];
-			}
-			elseif ($size == 'medium' and $this->tag == 'profile-photo')
-			{
-				$size = ['width' => 150, 'height' => 150];
-			}
-			elseif ($size == 'large' and $this->tag == 'profile-photo')
-			{
-				$size = ['width' => 350, 'height' => 350];
-			}
-
-			$method = isset($size['method']) ? $size['method'] : 'resizeCrop';
-
-			$link = Image::path($link, $method, $size['width'], $size['height']);
+			$link = Image::url($link, $options);
 		}
 
 		return $link;

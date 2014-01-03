@@ -115,8 +115,8 @@ return array(
 		'Cohensive\Markdown\MarkdownServiceProvider',
 		'Prologue\Alerts\AlertsServiceProvider',
 		'anlutro\cURL\Laravel\cURLServiceProvider',
-		'KevBaldwyn\Image\ImageServiceProvider',
 		'Profiler\ProfilerServiceProvider',
+		'Andheiberg\Image\ImageServiceProvider',
 
 	),
 
@@ -191,7 +191,7 @@ return array(
 		'Date'            => 'Carbon\Carbon',
 		'Notify'          => 'Prologue\Alerts\Facades\Alert',
 		'CURL'            => 'anlutro\cURL\Laravel\cURL',
-		'Image'           => 'KevBaldwyn\Image\Facades\Image'
+		'Image'           => 'Andheiberg\Image\Facades\Image'
 
 	),
 

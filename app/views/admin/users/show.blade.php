@@ -8,7 +8,7 @@ Laravel PHP Framework
 	<div class="panel panel-default">
 		<div class="panel-heading">{{ $user->name }} {{ $user->isDeactivated() ? '(deactivated)' : '' }}</div>
 		<div class="panel-body">
-			<img class="profile-photo" src="{{ $user->profilePhoto->link('medium') }}" alt="{{{ $user->profilePhoto->description }}}">
+			<img class="profile-photo" src="{{ $user->profilePhoto->link(['preset' => 'profile.medium']) }}" alt="{{{ $user->profilePhoto->description }}}">
 			<table class="table">
 				<tbody>
 					<tr>

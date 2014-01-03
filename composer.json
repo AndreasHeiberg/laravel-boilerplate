@@ -7,17 +7,15 @@
 		"laravel/framework": "4.1.*",
 		"raveren/kint": "dev-master",
 		"barryvdh/laravel-debugbar": "1.*",
-		"way/laravel-test-helpers": "dev-master",
 		"cohensive/markdown": "dev-master",
 		"fzaninotto/faker": "1.2.*@dev",
 		"prologue/alerts": "dev-master",
 		"codeception/codeception": "*",
 		"anlutro/curl": "dev-master",
-		"imagecow/imagecow": "dev-master",
-		"kevbaldwyn/image": "dev-master",
 		"andheiberg/asset": "1.*",
 		"andheiberg/auth": "1.*",
 		"andheiberg/theme": "1.*",
+		"andheiberg/image": "1.*",
 		"loic-sharma/profiler": "1.1.*"
 	},
 	"autoload": {

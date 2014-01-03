@@ -5,7 +5,7 @@ A starting point for every Laravel project. It will include:
 - Assets
 	- Grunt: concat, minify and cachebusting
 	- Blade syntax and helper functions
-	- On the fly image resize and crop and responsive image implementation (https://github.com/kevbaldwyn/image)
+	- On the fly image resize and crop
 - Deploy
 	- Capistrano (why can't I get Rocketeer to work?)
 - Authentication
