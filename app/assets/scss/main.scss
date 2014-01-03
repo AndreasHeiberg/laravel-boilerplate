@@ -88,6 +88,10 @@ h1 {
 	border-radius: 3px;
 }
 
+.row-align-middle td {
+	vertical-align: middle !important;
+}
+
 tr:first-child td {
 	border-top: none !important;
 }
