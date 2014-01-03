@@ -31,29 +31,9 @@ class UsersController extends BaseController {
 	 */
 	public function index()
 	{
-		$users = $this->user->paginate(20);
+		$users = $this->user->paginate(10);
 
 		return $this->view->make('admin.users.index', compact('users'));
-	}
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
 	}
 
 	/**
@@ -90,7 +70,15 @@ class UsersController extends BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$user = $this->user->findOrFail($id);
+		$user->update($this->input->all());
+
+		if ($user->hasErrors())
+		{
+			return $this->redirect->back()->withErrors($user->errors);
+		}
+
+		return $this->redirect->route('admin.users.show', [$id]);
 	}
 
 	/**
@@ -101,16 +89,56 @@ class UsersController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		if ( ! $this->user->delete($id))
+		$user = $this->user->findOrFail($id);
+		$user->forceDelete();
+
+		$this->notify->success('The account has been deleted.')->flash();
+
+		return $this->redirect->route('admin.users.index');
+	}
+
+	/**
+	 * Deactivate user
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function deactivate($id)
+	{
+		$user = $this->user->findOrFail($id);
+
+		if ( ! $user->deactivate())
 		{
-			$this->notify->success('The account could not be deleted.')->flash();
+			$this->notify->success('The account could not be deactivated.')->flash();
 
 			return $this->redirect->back();
 		}
 
-		$this->notify->success('The account has been deleted.')->flash();
+		$this->notify->success('The account has been deactivated.')->flash();
 
-		return $this->redirect->route('login');
+		return $this->redirect->route('admin.users.index');
+	}
+
+	/**
+	 * Activate user
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function activate($id)
+	{
+		$user = $this->user->findOrFail($id);
+
+		if ( ! $user->activate())
+		{
+			$this->notify->success('The account could not be activated.')->flash();
+
+			return $this->redirect->back();
+		}
+
+		$this->notify->success('The account has been activated.')->flash();
+
+		return $this->redirect->route('admin.users.index');
 	}
 
 }
