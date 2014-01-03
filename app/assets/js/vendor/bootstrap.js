@@ -10,3 +10,5 @@
 // @import "bootstrap/modal.js"
 // @import "bootstrap/tooltip.js"
 // @import "bootstrap/popover.js"
+
+@import "bootstrap/fileinput.js"
