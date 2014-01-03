@@ -89,7 +89,7 @@ class AuthController extends BaseController {
 	public function postRegister()
 	{
 		$credentials = $this->input->except('_token');
-		
+
 		$auth = $this->auth->register($credentials);
 
 		if ($auth->hasErrors())

@@ -18,6 +18,8 @@ Route::group(['prefix' => 'api'], function()
 
 Route::group(['prefix' => 'admin', 'before' => 'auth|auth.admin'], function()
 {
+		Route::post('users/{id}/deactivate', ['as' => 'admin.users.deactivate', 'uses' => 'Controllers\Admin\UsersController@deactivate']);
+		Route::post('users/{id}/activate', ['as' => 'admin.users.activate', 'uses' => 'Controllers\Admin\UsersController@activate']);
 	Route::resource('users', 'Controllers\Admin\UsersController');
 
 	Route::controller('/', 'Controllers\Admin\AdminController', [

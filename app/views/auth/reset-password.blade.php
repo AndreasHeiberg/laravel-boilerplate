@@ -8,11 +8,11 @@ Login
 	<div class="register-form row">
 		<div class="col-md-12">
 			+@form()
-				<h2>Register</h2>
+				<h2>Reset your password</h2>
 
 				+@formHidden('token', $token)
 
-				+@formText('email')
+				+@formText('email')->disabled()
 
 				+@formPassword('password', 'New password')
 
