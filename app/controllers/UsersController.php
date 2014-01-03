@@ -30,29 +30,9 @@ class UsersController extends BaseController {
 	 */
 	public function index()
 	{
-		$users = $this->user->paginate(20);
+		$users = $this->user->paginate(10);
 
 		return $this->view->make('users.index', compact('users'));
-	}
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
 	}
 
 	/**
@@ -65,7 +45,9 @@ class UsersController extends BaseController {
 	{
 		$user = $this->user->findOrFail($id);
 
-		return $this->view->make('users.show', compact('user'));
+		$canEdit = $this->auth->user()->id == $id;
+
+		return $this->view->make('users.show', compact('user', 'canEdit'));
 	}
 
 	/**
@@ -76,6 +58,13 @@ class UsersController extends BaseController {
 	 */
 	public function edit($id)
 	{
+		if ($this->auth->user()->id !== $id)
+		{
+			$this->notify->success('You do not have permission to edit this account.')->flash();
+
+			return $this->redirect->back();
+		}
+
 		$user = $this->user->findOrFail($id);
 		
 		return $this->view->make('users.edit', compact('user'));
@@ -89,7 +78,22 @@ class UsersController extends BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		if ($this->auth->user()->id !== $id)
+		{
+			$this->notify->success('You do not have permission to edit this account.')->flash();
+
+			return $this->redirect->back();
+		}
+
+		$user = $this->user->findOrFail($id);
+		$user->update($this->input->all());
+
+		if ($user->hasErrors())
+		{
+			return $this->redirect->back()->withErrors($user->errors);
+		}
+
+		return $this->redirect->route('users.show', [$id]);
 	}
 
 	/**
@@ -107,12 +111,8 @@ class UsersController extends BaseController {
 			return $this->redirect->back();
 		}
 
-		if ( ! $this->user->delete($id))
-		{
-			$this->notify->success('Your account could not be deleted.')->flash();
-
-			return $this->redirect->back();
-		}
+		$user = $this->user->findOrFail($id);
+		$user->forceDelete();
 
 		$this->notify->success('Your account has been deleted.')->flash();
 

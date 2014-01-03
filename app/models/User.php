@@ -16,7 +16,7 @@ class User extends AuthUser {
 	 *
 	 * @var array
 	 */
-	protected $fillable = array('email', 'password', 'first_name', 'last_name');
+	protected $fillable = array('email', 'password', 'first_name', 'last_name', 'profile_photo');
 
 	/**
 	 * The attributes excluded from the model's JSON form.
@@ -37,13 +37,32 @@ class User extends AuthUser {
 
 	public function addProfilePhoto($file)
 	{
+		if ($file == null)
+		{
+			return false;
+		}
+
+		$previous = $this->profilePhoto;
+
+		if ($previous)
+		{
+			$previous->delete();
+		}
+
 		$upload = Upload::add($file, 'profile-photo', "Profile photo of {$this->name}");
 		$this->uploads()->save($upload);
+
+		return true;
 	}
 
 	public function getProfilePhotoAttribute($value)
 	{
 		return $this->uploads()->where('tag', 'profile-photo')->first();
+	}
+
+	public function setProfilePhotoAttribute($value)
+	{
+		return $this->addProfilePhoto($value);
 	}
 
 }

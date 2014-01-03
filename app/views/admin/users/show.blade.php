@@ -4,35 +4,9 @@
 Laravel PHP Framework
 @stop
 
-@section('css')
-	@parent
-	<style>
-		.panel-body {
-			min-height: 148px;
-		}
-
-		.profile-photo {
-			position: absolute;
-			top: 13px;
-			right: 13px;
-			border: solid hsl(0, 100%, 100%) 6px;
-			box-shadow: 0px 0px 1px hsl(0, 0%, 60%);
-			border-radius: 3px;
-		}
-
-		tr:first-child td {
-			border-top: none !important;
-		}
-
-		td:first-child {
-			max-width: 40px;
-		}
-	</style>
-@stop
-
 @section('main')
 	<div class="panel panel-default">
-		<div class="panel-heading">{{ $user->name }}</div>
+		<div class="panel-heading">{{ $user->name }} {{ $user->isDeactivated() ? '(deactivated)' : '' }}</div>
 		<div class="panel-body">
 			<img class="profile-photo" src="{{ $user->profilePhoto->link('medium') }}" alt="{{{ $user->profilePhoto->description }}}">
 			<table class="table">
@@ -46,11 +20,27 @@ Laravel PHP Framework
 						<td>{{ $user->created_at }}</td>
 					</tr>
 					<tr>
-						<td>Created at</td>
+						<td>Last updated at</td>
 						<td>{{ $user->updated_at }}</td>
 					</tr>
 				</tbody>
 			</table>					
 		</div>
 	</div>
+	
+	<a href="{{ route('admin.users.edit', [$user->id]) }}" class="btn btn-primary">Edit info</a>
+	<button type="button" class="btn btn-primary">Send email</button>
+	@if ($user->isDeactivated())
+		+@form(['url' => route('admin.users.activate', [$user->id])])
+			<input type="submit" class="btn btn-primary" value="Activate user">
+		-@form
+	@else
+		+@form(['url' => route('admin.users.deactivate', [$user->id])])
+			<input type="submit" class="btn btn-warning" value="Deactivate user">
+		-@form
+	@endif
+	+@form(['method' => 'DELETE'])
+		<input type="hidden" name="force" value="true">
+		<input type="submit" class="btn btn-danger" value="Delete user">
+	-@form
 @stop
