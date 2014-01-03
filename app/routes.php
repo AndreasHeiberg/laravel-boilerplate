@@ -11,6 +11,11 @@
 |
 */
 
+Route::group(['prefix' => 'api'], function()
+{
+	Route::resource('users', 'Controllers\Api\UsersController');
+});
+
 Route::group(['prefix' => 'admin', 'before' => 'auth|auth.admin'], function()
 {
 	Route::resource('users', 'Controllers\Admin\UsersController');
