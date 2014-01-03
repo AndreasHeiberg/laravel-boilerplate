@@ -12,7 +12,7 @@ $I->fillField('first_name', 'Test');
 $I->fillField('last_name','User2');
 $I->fillField('email', $email);
 $I->fillField('password','testuser2');
-$I->click('Register', '.form-actions');
+$I->click('#register input[type=submit]');
 
 $I->see('Log in');
 $I->see('A verification email has been sent');

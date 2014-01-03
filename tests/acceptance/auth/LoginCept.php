@@ -9,7 +9,7 @@ $I->seeResponseCodeIs(200);
 
 $I->fillField('email', 'test.user@gmail.com');
 $I->fillField('password','testuser');
-$I->click('Log in', '.form-actions');
+$I->click('#login input[type=submit]');
 
-$I->see('Welcome, Test!');
 $I->seeResponseCodeIs(200);
+$I->see('Welcome, Test!');

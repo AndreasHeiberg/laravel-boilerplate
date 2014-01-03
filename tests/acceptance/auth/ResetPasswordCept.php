@@ -30,6 +30,6 @@ $I->click('Reset password', '.form-actions');
 $I->see('Your password was reset. Please log in.');
 $I->fillField('email', $email);
 $I->fillField('password', 'newpassword');
-$I->click('Log in', '.form-actions');
+$I->click('#login input[type=submit]');
 
 $I->see('Welcome, Test!');
