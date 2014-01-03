@@ -10,8 +10,6 @@ class UserTableSeeder extends Seeder {
 		$this->command->info('Deleting existing User table ...');
 		DB::table('users')->delete();
 		
-		$count = 5;
-
 		User::create([
 			'first_name' => 'Test',
 			'last_name' => 'User',
@@ -28,9 +26,9 @@ class UserTableSeeder extends Seeder {
 			'auth_email_verified' => true,
 		])->addProfilePhoto('http://api.randomuser.me/0.2/portraits/men/42.jpg');
 
-		$this->createUsersWithRandomUser();
+		$this->createUsersWithRandomUser(20);
 
-		$this->command->info('Inserted '.$count.' sample records using Faker.');
+		$this->command->info('Inserted 20 sample records using Faker.');
 	}
 
 	public function createUsersWithFaker($count = 5)
@@ -56,13 +54,12 @@ class UserTableSeeder extends Seeder {
 
 	public function createUsersWithRandomUser($count = 5)
 	{
-		$users = json_decode(CURL::get("http://api.randomuser.me/?results={$count}"), true);
-
-		foreach ($users['results'] as $user)
+		for($i = 0; $i < $count; $i++)
 		{
-			$user = $user['user'];
+			$response = json_decode(CURL::get("http://api.randomuser.me/?results=1"), true);
+			$user = $response['results'][0]['user'];
 			$picture = $user['picture'];
-			
+
 			User::create([
 				'first_name' => ucfirst($user['name']['first']),
 				'last_name' => ucfirst($user['name']['last']),
@@ -70,7 +67,6 @@ class UserTableSeeder extends Seeder {
 				'password' => ucfirst($user['name']['first']),
 				'auth_email_verified' => true,
 			])->addProfilePhoto($picture);
-
 		}
 	}
 
