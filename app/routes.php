@@ -24,6 +24,7 @@ Route::group(['prefix' => 'admin', 'before' => 'auth|auth.admin'], function()
 
 	Route::controller('/', 'Controllers\Admin\AdminController', [
 		'getIndex' => 'admin',
+		'getStats' => 'admin.stats',
 	]);
 });
 

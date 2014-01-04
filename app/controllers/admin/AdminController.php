@@ -9,4 +9,9 @@ class AdminController extends BaseController {
 		return $this->view->make('admin.index');
 	}
 
+	public function getStats()
+	{
+		return $this->view->make('admin.stats');
+	}
+
 }

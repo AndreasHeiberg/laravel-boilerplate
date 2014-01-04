@@ -24,7 +24,7 @@
 				<div class="col-md-3">
 					<ul class="nav nav-pills nav-stacked">
 						<li><a href="{{ route('admin.users.index') }}">Users</a></li>
-						<li><a href="">Pages</a></li>
+						<li><a href="{{ route('admin.stats') }}">Stats</a></li>
 					</ul>
 				</div>
 				<div class="col-md-9">
