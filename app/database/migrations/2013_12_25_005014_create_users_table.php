@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration {
 			$table->string('first_name');
 			$table->string('last_name');
 			$table->boolean('auth_email_verified');
+			$table->boolean('auth_deactivated');
 			$table->softDeletes();
 			$table->timestamps();
 		});

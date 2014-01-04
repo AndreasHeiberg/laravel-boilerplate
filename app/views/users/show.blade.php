@@ -28,7 +28,7 @@ Laravel PHP Framework
 		</div>
 	</div>
 
-	@if ($canEdit)	
+	@if ($canEdit)
 		<a href="{{ route('users.edit', [$user->id]) }}" class="btn btn-primary">Edit profile</a>
 	@endif
 @stop

@@ -34,7 +34,7 @@
 									<span class="sr-only">Toggle Dropdown</span>
 								</button>
 								<ul class="dropdown-menu" role="menu">
-									<li><a href="{{ route('users.edit', [Auth::user()->id]) }}">Edit account</a></li>
+									<li><a href="{{ route('users.show', [Auth::user()->id]) }}">Account</a></li>
 									<li><a href="{{ route('home.help') }}">Help</a></li>
 									<li><a href="{{ route('logout') }}">Logout</a></li>
 								</ul>

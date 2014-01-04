@@ -30,7 +30,7 @@ class UsersController extends BaseController {
 	 */
 	public function index()
 	{
-		$users = $this->user->paginate(10);
+		$users = $this->user->active()->paginate(10);
 
 		return $this->view->make('users.index', compact('users'));
 	}
@@ -43,7 +43,7 @@ class UsersController extends BaseController {
 	 */
 	public function show($id)
 	{
-		$user = $this->user->findOrFail($id);
+		$user = $this->user->active()->findOrFail($id);
 
 		$canEdit = $this->auth->user()->id == $id;
 

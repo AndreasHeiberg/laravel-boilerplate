@@ -29,18 +29,15 @@ Laravel PHP Framework
 	</div>
 	
 	<a href="{{ route('admin.users.edit', [$user->id]) }}" class="btn btn-primary">Edit info</a>
-	<button type="button" class="btn btn-primary">Send email</button>
+	<button type="button" class="btn btn-default">Send email</button>
 	@if ($user->isDeactivated())
-		+@form(['url' => route('admin.users.activate', [$user->id])])
+		+@formInline(['url' => route('admin.users.activate', [$user->id])])
 			<input type="submit" class="btn btn-primary" value="Activate user">
 		-@form
 	@else
-		+@form(['url' => route('admin.users.deactivate', [$user->id])])
+		+@formInline(['url' => route('admin.users.deactivate', [$user->id])])
 			<input type="submit" class="btn btn-warning" value="Deactivate user">
 		-@form
 	@endif
-	+@form(['method' => 'DELETE'])
-		<input type="hidden" name="force" value="true">
-		<input type="submit" class="btn btn-danger" value="Delete user">
-	-@form
+	+@deleteButton('Delete user')
 @stop

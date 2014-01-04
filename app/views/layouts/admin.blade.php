@@ -20,8 +20,6 @@
 		@include('layouts._header')
 
 		<div class="container">
-			@include('layouts._notify')
-
 			<div class="row">
 				<div class="col-md-3">
 					<ul class="nav nav-pills nav-stacked">
@@ -30,6 +28,8 @@
 					</ul>
 				</div>
 				<div class="col-md-9">
+					@include('layouts._notify')
+					
 					@include('layouts._breadcrums')
 					
 					@section('main')

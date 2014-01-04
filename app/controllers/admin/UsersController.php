@@ -31,7 +31,20 @@ class UsersController extends BaseController {
 	 */
 	public function index()
 	{
-		$users = $this->user->paginate(10);
+		$showActive = $this->input->input('activated');
+
+		if ($showActive == '1')
+		{
+			$users = $this->user->active()->paginate(10);
+		}
+		elseif ($showActive == '0')
+		{
+			$users = $this->user->deactivated()->paginate(10);
+		}
+		else
+		{
+			$users = $this->user->paginate(10);
+		}
 
 		return $this->view->make('admin.users.index', compact('users'));
 	}
