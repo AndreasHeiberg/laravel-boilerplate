@@ -117,6 +117,7 @@ return array(
 		'anlutro\cURL\Laravel\cURLServiceProvider',
 		'Profiler\ProfilerServiceProvider',
 		'Andheiberg\Image\ImageServiceProvider',
+		'Rocketeer\RocketeerServiceProvider',
 
 	),
 
@@ -191,7 +192,8 @@ return array(
 		'Date'            => 'Carbon\Carbon',
 		'Notify'          => 'Prologue\Alerts\Facades\Alert',
 		'CURL'            => 'anlutro\cURL\Laravel\cURL',
-		'Image'           => 'Andheiberg\Image\Facades\Image'
+		'Image'           => 'Andheiberg\Image\Facades\Image',
+		'Rocketeer'       => 'Rocketeer\Facades\Rocketeer',
 
 	),
 

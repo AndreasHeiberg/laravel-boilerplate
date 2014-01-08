@@ -13,7 +13,7 @@
 
 	# Resize on the fly
 	RewriteCond %{QUERY_STRING}  ^(.+) [NC]
-	RewriteRule ^(.+)\.(png|jpg|gif)$ index.php [L]
+	RewriteRule ^(.+)\.(png|jpg|gif)$ /images?src=/$1.$2 [L,R,QSA]
 
 	# Handle Front Controller...
 	RewriteCond %{REQUEST_FILENAME} !-d

@@ -12,11 +12,13 @@
 		"prologue/alerts": "dev-master",
 		"codeception/codeception": "*",
 		"anlutro/curl": "dev-master",
-		"andheiberg/asset": "1.*",
-		"andheiberg/auth": "1.*",
-		"andheiberg/theme": "1.*",
-		"andheiberg/image": "1.*",
-		"loic-sharma/profiler": "1.1.*"
+		"andheiberg/asset": "1.0.*@dev",
+		"andheiberg/auth": "1.0.*@dev",
+		"andheiberg/theme": "1.0.*@dev",
+		"andheiberg/image": "dev-master",
+		"loic-sharma/profiler": "1.1.*",
+		"anahkiasen/rocketeer": "dev-develop",
+		"aws/aws-sdk-php": "~2.4.7"
 	},
 	"autoload": {
 		"classmap": [
